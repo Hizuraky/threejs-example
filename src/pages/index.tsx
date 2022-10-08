@@ -1,10 +1,10 @@
 import type { NextPage } from "next"
-import { Canvas } from "../components/Canvas"
+import { Test } from "../components/Test"
 
 const Home: NextPage = () => {
   return (
     <div>
-      <Canvas />
+      <Test />
     </div>
   )
 }
