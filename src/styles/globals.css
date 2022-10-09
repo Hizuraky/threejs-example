@@ -24,3 +24,9 @@ a {
     background: black;
   }
 }
+
+.canvas{
+  width: 100vw;
+  height:100vh;
+  background:radial-gradient(#767995, #050725);
+}
