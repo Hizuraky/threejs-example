@@ -15,8 +15,9 @@ export const TCanvas = () => {
       ref.current.rotation.y += 0.1
       ref.current.position.z -= 0.001
       if (hovered) {
-        ref.current.position.x += position[0] < 0 ? -0.002 : 0.002
-        ref.current.position.y += position[1] < 0 ? -0.002 : 0.002
+        ref.current.position.x += position[0] < 0 ? -0.0008 : 0.0008
+        ref.current.position.y += position[1] < 0 ? -0.0008 : 0.0008
+        ref.current.position.z += 0.0035
       }
     })
 
@@ -63,8 +64,8 @@ export const TCanvas = () => {
     const vec = new THREE.Vector3()
 
     useFrame((state) => {
-      frame < 3 && (frame += 0.0005)
       shaderArgs.uniforms.uTime.value++
+      frame < 3 && (frame += 0.0005)
       state.camera.position.lerp(vec.set(0, 0, frame), 0.1)
       state.camera.updateProjectionMatrix()
     })
@@ -90,24 +91,25 @@ export const TCanvas = () => {
     )
   }
 
+  // 中心に近いところから10->20->40->50->60個のBoxを生成する
   return (
     <div className="canvas">
       <Canvas>
         <pointLight position={[1, 1, 1]} />
         {[...Array(10)].map((_, i) => (
-          <Box key={i} position={[Math.random() * 0.8 - 0.4, Math.random() * 0.8 - 0.4, Math.random() - 0.5]} />
+          <Box key={`boxes1-${i}`} position={[Math.random() * 0.8 - 0.4, Math.random() * 0.8 - 0.4, Math.random() - 0.5]} />
         ))}
         {[...Array(20)].map((_, i) => (
-          <Box key={i} position={[Math.random() * 1.6 - 0.8, Math.random() * 1.6 - 0.8, Math.random() - 0.1]} />
+          <Box key={`boxes2-${i}`} position={[Math.random() * 1.6 - 0.8, Math.random() * 1.6 - 0.8, Math.random() - 0.1]} />
         ))}
         {[...Array(40)].map((_, i) => (
-          <Box key={i} position={[Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() + 1]} />
+          <Box key={`boxes3-${i}`} position={[Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() + 1]} />
         ))}
         {[...Array(50)].map((_, i) => (
-          <Box key={i} position={[Math.random() * 4 - 2, Math.random() * 4 - 2, Math.random() + 2]} />
+          <Box key={`boxes4-${i}`} position={[Math.random() * 4 - 2, Math.random() * 4 - 2, Math.random() + 2]} />
         ))}
         {[...Array(60)].map((_, i) => (
-          <Box key={i} position={[Math.random() * 6 - 3, Math.random() * 6 - 3, Math.random() + 3]} />
+          <Box key={`boxes5-${i}`} position={[Math.random() * 6 - 3, Math.random() * 6 - 3, Math.random() + 3]} />
         ))}
         <Plane />
       </Canvas>
